@@ -1,12 +1,14 @@
 FROM debian:wheezy
-MAINTAINER igor.katson@gmail.com
+MAINTAINER sixto.cantolla@gmail.com
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get install -y python-pip python-dev python-psycopg2 git subversion mercurial python-svn
+RUN apt-get install -y python-pip python-dev python-psycopg2 git subversion mercurial python-svn python-ldap
 
-RUN easy_install reviewboard
+RUN easy_install \
+    -f http://downloads.reviewboard.org/releases/ReviewBoard/2.5/ \
+    -U ReviewBoard
 
 RUN pip install -U uwsgi
 
